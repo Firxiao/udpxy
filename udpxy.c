@@ -1138,16 +1138,6 @@ process_requests (tmfd_t* asock, size_t *alen, fd_set* rset, struct server_ctx* 
 }
 
 
-static void
-init_app_info()
-{
-    if ('\0' == g_udpxy_finfo[0]) {
-        (void) snprintf( g_udpxy_finfo, sizeof(g_udpxy_finfo),
-                "%s %s-%d.%d (%s) %s [%s]", g_udpxy_app, VERSION,
-                BUILDNUM, PATCH, BUILD_TYPE,
-            COMPILE_MODE, get_sysinfo(NULL) );
-    }
-}
 
 
 static void
@@ -1216,7 +1206,6 @@ udpxy_main( int argc, char* const argv[] )
 
     struct sigaction qact, iact, cact, oldact;
 
-    init_app_info();
     (void) get_pidstr( PID_RESET, "S" );
 
     rc = init_uopt( &g_uopt );

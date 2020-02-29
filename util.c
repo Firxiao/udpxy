@@ -41,7 +41,6 @@
 #include "mtrace.h"
 #include "osdef.h"
 
-static char s_sysinfo [80] = "\0";
 
 /* write buffer to a file
  *
@@ -1031,29 +1030,4 @@ get_pidstr( int reset, const char* pfx )
     return pidstr;
 }
 
-
-/* retrieve system info string
- */
-const char*
-get_sysinfo (int* perr)
-{
-    struct utsname uts;
-    int rc = 0;
-
-    if (s_sysinfo[0]) return s_sysinfo;
-
-    (void) memset (&uts, 0, sizeof(uts));
-    errno = 0; rc = uname (&uts);
-    if (perr) *perr = errno;
-
-    if (0 == rc) {
-        s_sysinfo [sizeof(s_sysinfo)-1] = '\0';
-        (void) snprintf (s_sysinfo, sizeof(s_sysinfo)-1, "%s %s %s",
-            uts.sysname, uts.release, uts.machine);
-    }
-    return s_sysinfo;
-}
-
-
-/* __EOF__ */
 

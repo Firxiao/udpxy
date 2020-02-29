@@ -54,7 +54,6 @@ static const char* upxfmt_NAME[] = {
     "UDPXY-UDS",
     "RAW"
 };
-static const int UPXDT_LEN = sizeof(upxfmt_NAME) / sizeof(upxfmt_NAME[0]);
 
 
 const char*
